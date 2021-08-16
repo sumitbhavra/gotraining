@@ -168,24 +168,18 @@ func TestPeek(t *testing.T) {
 			}
 			t.Logf("\t%s\tTest 0:\tShould be able to push %d items.", succeed, items)
 
-			var popData string
+			var peekData string
 			for i := 0; i < items; i++ {
 				data, err := s.Peek(i)
 				if err != nil {
 					t.Logf("\t%s\tTest 0:\tShould be able to peek an item.", failed)
 				}
-				popData += data.Name
+				peekData += data.Name
 			}
 
-			if s.Count() != items {
-				t.Logf("\t%s\tTest 0:\tShould be able to pop all %d items.", failed, items)
-				t.Fatalf("\t\tTest 0:\tGot %d, Expected %d.", s.Count(), items)
-			}
-			t.Logf("\t%s\tTest 0:\tShould be able to pop all %d items.", succeed, items)
-
-			if popData != orgData {
+			if peekData != orgData {
 				t.Logf("\t%s\tTest 0:\tShould be able to peek %d items in FILO order.", failed, items)
-				t.Fatalf("\t\tTest 0:\tGot %s, Expected %s.", popData, orgData)
+				t.Fatalf("\t\tTest 0:\tGot %s, Expected %s.", peekData, orgData)
 			}
 			t.Logf("\t%s\tTest 0:\tShould be able to peek %d items in FILO order.", succeed, items)
 		}
